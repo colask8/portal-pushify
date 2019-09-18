@@ -1,7 +1,7 @@
 IMAGE_NAME := portal-pushify
 IMAGE_TAG := latest
-CONTAINER_NAME := portal__pushify
-ENV_FILE_NAME := portal_pushify_env
+CONTAINER_NAME := portal_app_pushify
+ENV_FILE_NAME := portal_app_pushify_env
 HOST_PORT := 5000
 APP_DIR := '/opt/app'
 
