@@ -33,7 +33,10 @@ def app_push(room=None):
   # print("%s %s" % (is_json, json.loads(data.decode('utf8'))))
   content = data
   if is_json and content and 'message' in content:
-    msg = content['message']
+    msg = {
+      'message': content['message'],
+      'room': room
+    }
     
     logger.info('Push content to %s: %r', room, content)
     socketio.emit('output', msg, room=room, namespace=NAMESPACE)
@@ -55,8 +58,13 @@ def portal_push(plugin=None, room=None):
   if is_json and content and 'message' in content:
     msg = content['message']
 
+    full_msg = {
+      'room': room,
+      'message': msg
+    }
+
     logger.info('Push content to %s: %r', room, content)
-    socketio.emit('output', msg, room=plugin+room, namespace=NAMESPACE)
+    socketio.emit('output', full_msg, room=plugin+room, namespace=NAMESPACE)
 
     return jsonify({'status': 'OK'}), 200
   else:
@@ -82,8 +90,8 @@ def push(payload):
   logger.info('Message from client %s', payload)
   print(payload, file=sys.stderr)
   room = payload['room']
-  msg = payload['message']
-  socketio.emit('output', msg, room=room, namespace=NAMESPACE)
+  msg = { 'message': payload['message'], 'room': room}
+  socketio.emit('output', payload, room=room, namespace=NAMESPACE)
   
   
 if __name__ == '__main__':
