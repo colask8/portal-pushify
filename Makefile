@@ -51,7 +51,7 @@ restart:
 	docker restart $(CONTAINER_NAME)
 
 shell:
-	docker exec -t $(CONTAINER_NAME) bash
+	docker exec -it $(CONTAINER_NAME) bash
 
 docker_ip:
 	@ip addr show docker0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1
