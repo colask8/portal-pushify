@@ -1,9 +1,9 @@
 FROM python:3.7
 MAINTAINER cola14@gmail.com
 
-ENV NGINX_VERSION 1.6.3
+# ENV NGINX_VERSION 1.6.3
 ENV GUNICORN_VERSION 19.9.0
-ENV SUPERVISOR_VERSION 3.1.0
+# ENV SUPERVISOR_VERSION 3.1.0
 ENV APP_ROOT /opt/app
 ENV FLASK_VERSION 1.0.2
 
@@ -18,7 +18,7 @@ RUN rm /etc/nginx/sites-enabled/default
 RUN ln -s /opt/app/nginx/socket_config /etc/nginx/sites-enabled/default
 # install gunicorn
 RUN pip3 install gunicorn==${GUNICORN_VERSION}
-RUN pip3 install Flask==${FLASK_VERSION}
+RUN pip3 install Flask==${FLASK_VERSION} portal-pushify
 RUN pip3 install python-socketio==4.2.0 gunicorn==19.9.0 gevent==1.4.0 gevent-websocket==0.10.1 Flask-SocketIO==4.1.0
 
 # install supervisor
@@ -33,7 +33,6 @@ RUN pip3 install python-socketio==4.2.0 gunicorn==19.9.0 gevent==1.4.0 gevent-we
 
 WORKDIR ${APP_ROOT}
 VOLUME ['${APP_ROOT}']
-
-EXPOSE 80 443 5000 5001
-
-CMD ["python3.7", "./src/app.py"]
+EXPOSE 8000
+CMD /usr/local/bin/gunicorn --config gunicorn.conf portal-pushify:app
+# CMD ["python3.7", "./portal-pushify/portal_pushify.py"]
