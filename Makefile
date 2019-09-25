@@ -34,7 +34,7 @@ clean:
 	docker images $(IMAGE_NAME) | grep -q $(IMAGE_TAG) && docker rmi $(IMAGE_NAME):$(IMAGE_TAG) || true
 
 create:
-	docker run --name $(CONTAINER_NAME) --restart=always --env-file $(ENV_FILE) -d -p $(HOST_PORT):80 -v $(APP_DIR):/opt/portal_apps -v $(MAKE_DIR):/opt/app $(IMAGE_NAME):$(IMAGE_TAG)
+	docker run --name $(CONTAINER_NAME) --restart=always --env-file $(ENV_FILE) -d -p $(HOST_PORT):8000 -v $(APP_DIR):/opt/portal_apps -v $(MAKE_DIR):/opt/app $(IMAGE_NAME):$(IMAGE_TAG)
 
 kill:
 	docker stop $(CONTAINER_NAME) && docker rm -fv $(CONTAINER_NAME)
