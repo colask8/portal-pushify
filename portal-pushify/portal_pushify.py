@@ -19,6 +19,7 @@ NAMESPACE = os.getenv('SOCKET_NAMESPACE', '/wsock')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'secret!')
 socketio = SocketIO(app)
+socketio.async_mode('gevent')
 
 sessions = {}
 
