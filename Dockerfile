@@ -19,7 +19,7 @@ RUN ln -s /opt/app/nginx/socket_config /etc/nginx/sites-enabled/default
 # install gunicorn
 RUN pip3 install gunicorn==${GUNICORN_VERSION}
 RUN pip3 install Flask==${FLASK_VERSION} portal-pushify
-RUN pip3 install python-socketio==4.2.0 gunicorn==19.9.0 gevent==1.4.0 gevent-websocket==0.10.1 Flask-SocketIO==4.1.0
+RUN pip3 install python-socketio==4.2.0 gunicorn==19.9.0 eventlet gevent==1.4.0 gevent-websocket==0.10.1 Flask-SocketIO==4.1.0
 # RUN cp templates/* /usr/local/lib/python3.7/site-packages/portal-pushify/templates/
 # install supervisor
 # RUN pip install supervisor==${SUPERVISOR_VERSION}
