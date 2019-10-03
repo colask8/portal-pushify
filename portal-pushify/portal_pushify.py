@@ -7,8 +7,10 @@ import json
 import logging
 from flask import Flask, request, jsonify, render_template
 from flask_socketio import SocketIO, join_room
+import eventlet
+eventlet.monkey_patch()
 # from gevent import monkey
-# monkey.patch_all()
+# # monkey.patch_all()
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
