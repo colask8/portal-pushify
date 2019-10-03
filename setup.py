@@ -12,7 +12,7 @@ os.chdir(
     os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir))
 )
 
-VERSION = '0.0.9'
+VERSION = '0.0.10'
 
 setup(
     name='portal-pushify',

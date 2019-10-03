@@ -7,8 +7,8 @@ import json
 import logging
 from flask import Flask, request, jsonify, render_template
 from flask_socketio import SocketIO, join_room
-from gevent import monkey
-monkey.patch_all()
+# from gevent import monkey
+# monkey.patch_all()
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -19,7 +19,6 @@ NAMESPACE = os.getenv('SOCKET_NAMESPACE', '/wsock')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'secret!')
 socketio = SocketIO(app)
-socketio.async_mode('gevent')
 
 sessions = {}
 
