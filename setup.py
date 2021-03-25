@@ -32,7 +32,7 @@ setup(
         'flask==1.0.2',
         'Flask-SocketIO==4.1.0',
         'gunicorn==19.9.0',
-        'pyyaml==5.1b3'
+        'pyyaml==5.4'
     ],
     classifiers=[
         'Environment :: Web Environment',
